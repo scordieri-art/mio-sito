@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurum Studio — Agenzia Creativa Milano</title>
+  <meta name="description" content="Studio creativo specializzato in brand identity, web design e motion graphics per brand ambiziosi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #080808; font-family: 'Inter', sans-serif; color: #fff; overflow-x: hidden; }
+
+    /* ORB BACKGROUND */
+    .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; animation: drift 14s ease-in-out infinite; }
+    .o1 { width: 700px; height: 700px; background: #c9a84c; top: -200px; left: -150px; animation-delay: 0s; }
+    .o2 { width: 500px; height: 500px; background: #7a5c10; top: 40%; right: -120px; animation-delay: -5s; }
+    .o3 { width: 400px; height: 400px; background: #d4af37; bottom: 10%; left: 35%; animation-delay: -9s; }
+    @keyframes drift { 0%,100%{transform:translateY(0) translateX(0)} 33%{transform:translateY(-30px) translateX(18px)} 66%{transform:translateY(20px) translateX(-12px)} }
+
+    /* UTILITIES */
+    .gold { color: #d4af37; }
+    .gold-grad { background: linear-gradient(135deg, #f5e070, #c9a84c, #8b6914); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(212,175,55,0.15); }
+    .divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #d4af37, transparent); margin: 36px auto; }
+    .section-label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(212,175,55,0.6); text-align: center; margin-bottom: 48px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; border-bottom: 1px solid rgba(212,175,55,0.08); background: rgba(8,8,8,0.8); backdrop-filter: blur(20px); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 6px; color: #fff; text-transform: uppercase; text-decoration: none; }
+    .logo span { color: #d4af37; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: #d4af37; }
+    .nav-cta { border: 1px solid rgba(212,175,55,0.4); color: #d4af37; padding: 10px 24px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; background: transparent; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+    .nav-cta:hover { background: rgba(212,175,55,0.08); }
+    .nav-burger { display: none; background: none; border: none; color: #d4af37; font-size: 24px; cursor: pointer; }
+
+    /* HERO */
+    .hero { position: relative; z-index: 5; text-align: center; padding: 160px 48px 100px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: rgba(212,175,55,0.7); margin-bottom: 32px; display: block; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 90px); font-weight: 300; line-height: 1.1; letter-spacing: -1px; margin-bottom: 8px; }
+    .hero h1 em { font-style: italic; display: block; }
+    .hero p { font-size: 16px; color: rgba(255,255,255,0.45); max-width: 480px; margin: 0 auto 52px; line-height: 1.85; font-weight: 300; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { background: linear-gradient(135deg, #d4af37, #8b6914); color: #080808; border: none; padding: 16px 38px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s; font-family: 'Inter', sans-serif; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,0.3); }
+    .btn-outline { background: transparent; border: 1px solid rgba(212,175,55,0.35); color: rgba(255,255,255,0.7); padding: 16px 38px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+    .btn-outline:hover { border-color: #d4af37; color: #d4af37; }
+    .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.2); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #d4af37, transparent); animation: scrollpulse 2s ease-in-out infinite; }
+    @keyframes scrollpulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* STATS */
+    .stats-bar { position: relative; z-index: 5; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1); }
+    .stat { text-align: center; padding: 40px 20px; border-right: 1px solid rgba(212,175,55,0.1); }
+    .stat:last-child { border-right: none; }
+    .stat-n { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; line-height: 1; margin-bottom: 10px; }
+    .stat-l { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+    /* SERVICES */
+    .services { position: relative; z-index: 5; padding: 100px 48px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(212,175,55,0.1); }
+    .svc { background: #080808; padding: 44px 36px; transition: background 0.3s; }
+    .svc:hover { background: rgba(212,175,55,0.04); }
+    .svc-num { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: rgba(212,175,55,0.4); margin-bottom: 24px; letter-spacing: 1px; }
+    .svc h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: #fff; margin-bottom: 16px; }
+    .svc p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; font-weight: 300; }
+    .svc-tag { display: inline-block; margin-top: 24px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(212,175,55,0.6); border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 2px; cursor: pointer; }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; padding: 28px 0; border-top: 1px solid rgba(212,175,55,0.08); border-bottom: 1px solid rgba(212,175,55,0.08); }
+    .marquee { display: flex; width: max-content; animation: mq 28s linear infinite; }
+    .mq-item { padding: 0 44px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(212,175,55,0.4); border-right: 1px solid rgba(212,175,55,0.12); white-space: nowrap; }
+    @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* PROCESS */
+    .process { position: relative; z-index: 5; padding: 100px 48px; text-align: center; }
+    .process h2 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; margin-bottom: 14px; }
+    .process-sub { font-size: 14px; color: rgba(255,255,255,0.38); margin-bottom: 70px; }
+    .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+    .steps::before { content:''; position:absolute; top:20px; left:12.5%; right:12.5%; height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,0.25),rgba(212,175,55,0.25),transparent); }
+    .step { padding: 0 24px; }
+    .step-dot { width: 40px; height: 40px; border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 13px; font-family: 'Cormorant Garamond', serif; color: #d4af37; background: #080808; position: relative; z-index: 1; }
+    .step h4 { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 12px; letter-spacing: 0.5px; }
+    .step p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.75; }
+
+    /* CLIENTS */
+    .clients { position: relative; z-index: 5; padding: 80px 48px; }
+    .clients-label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.22); text-align: center; margin-bottom: 36px; }
+    .clients-row { display: flex; justify-content: center; gap: 52px; align-items: center; flex-wrap: wrap; }
+    .client-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.18); letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; cursor: default; }
+    .client-name:hover { color: rgba(212,175,55,0.55); }
+
+    /* TESTIMONIAL */
+    .testimonial { position: relative; z-index: 5; padding: 80px 48px; text-align: center; }
+    blockquote { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.72); line-height: 1.65; max-width: 620px; margin: 0 auto 24px; }
+    .quote-author { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(212,175,55,0.6); }
+
+    /* CTA */
+    .cta-section { position: relative; z-index: 5; padding: 80px 48px; }
+    .cta-box { background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.15); padding: 70px 60px; text-align: center; max-width: 700px; margin: 0 auto; }
+    .cta-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; margin-bottom: 14px; }
+    .cta-box p { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 40px; line-height: 1.8; }
+    .input-row { display: flex; max-width: 460px; margin: 0 auto; }
+    .email-in { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.2); border-right: none; color: #fff; padding: 15px 20px; font-size: 13px; outline: none; font-family: 'Inter', sans-serif; }
+    .email-in::placeholder { color: rgba(255,255,255,0.22); }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 5; padding: 32px 48px; border-top: 1px solid rgba(212,175,55,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .foot-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+    .foot-links { display: flex; gap: 28px; }
+    .foot-links a { font-size: 11px; color: rgba(255,255,255,0.2); text-decoration: none; letter-spacing: 1px; transition: color 0.3s; }
+    .foot-links a:hover { color: #d4af37; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-burger { display: block; }
+      .hero { padding: 120px 24px 80px; }
+      .stats-bar { grid-template-columns: repeat(2,1fr); }
+      .stat { border-right: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1); }
+      .services { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .steps::before { display: none; }
+      .cta-box { padding: 40px 24px; }
+      .input-row { flex-direction: column; }
+      .email-in { border-right: 1px solid rgba(212,175,55,0.2); border-bottom: none; }
+      .clients-row { gap: 28px; }
+      footer { flex-direction: column; text-align: center; }
+      .process { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Aurum<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#processo">Metodo</a></li>
+    <li><a href="#clienti">Clienti</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contatti').scrollIntoView({behavior:'smooth'})">Inizia un progetto</button>
+  <button class="nav-burger" onclick="alert('Menu mobile — da implementare')">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <span class="eyebrow">Studio creativo — Milano · 2026</span>
+  <h1>Design che eleva<em class="gold-grad">il tuo brand</em></h1>
+  <div class="divider"></div>
+  <p>Creiamo identità visive, esperienze digitali e campagne che posizionano i brand ambiziosi al vertice del loro settore.</p>
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="document.getElementById('servizi').scrollIntoView({behavior:'smooth'})">Scopri i lavori</button>
+    <button class="btn-outline" onclick="document.getElementById('processo').scrollIntoView({behavior:'smooth'})">Il nostro metodo →</button>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n gold-grad">140+</div><div class="stat-l">Progetti realizzati</div></div>
+  <div class="stat"><div class="stat-n gold-grad">12</div><div class="stat-l">Anni di esperienza</div></div>
+  <div class="stat"><div class="stat-n gold-grad">38</div><div class="stat-l">Premi internazionali</div></div>
+  <div class="stat"><div class="stat-n gold-grad">98%</div><div class="stat-l">Clienti fedeli</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servizi">
+  <span class="section-label">— Cosa facciamo</span>
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <h3>Brand Identity</h3>
+      <p>Loghi, sistemi tipografici, palette cromatiche e linee guida complete. Costruiamo marchi riconoscibili che resistono al tempo e comunicano autorevolezza al primo sguardo.</p>
+      <span class="svc-tag">Esplora →</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <h3>Web Design & Dev</h3>
+      <p>Siti web animati, veloci e responsivi progettati per convertire. Dal concept al codice, con cura maniacale per ogni dettaglio dell'esperienza utente su ogni dispositivo.</p>
+      <span class="svc-tag">Esplora →</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <h3>Motion & 3D</h3>
+      <p>Animazioni, reel di brand, intro video e grafica tridimensionale che danno vita ai tuoi contenuti su ogni piattaforma — dal social al grande schermo.</p>
+      <span class="svc-tag">Esplora →</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <h3>Strategia creativa</h3>
+      <p>Analisi del mercato, posizionamento competitivo e architettura del messaggio. Prima di disegnare, pensiamo. La strategia è la fondamenta di ogni progetto di successo.</p>
+      <span class="svc-tag">Esplora →</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <h3>Packaging & Print</h3>
+      <p>Design editoriale, packaging di prodotto e materiali stampa che si distinguono sullo scaffale. L'esperienza fisica del tuo brand, progettata con la stessa cura del digitale.</p>
+      <span class="svc-tag">Esplora →</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">06</div>
+      <h3>Campagne social</h3>
+      <p>Visual identity per i social media, template, reel e strategie di contenuto che costruiscono community attive e amplificano la voce del tuo brand nel rumore digitale.</p>
+      <span class="svc-tag">Esplora →</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span class="mq-item">Brand Identity</span><span class="mq-item">UI/UX Design</span><span class="mq-item">Motion Graphics</span><span class="mq-item">Webflow</span><span class="mq-item">Framer</span><span class="mq-item">3D Rendering</span><span class="mq-item">Packaging</span><span class="mq-item">Art Direction</span><span class="mq-item">Copywriting</span><span class="mq-item">Rebranding</span><span class="mq-item">Brand Identity</span><span class="mq-item">UI/UX Design</span><span class="mq-item">Motion Graphics</span><span class="mq-item">Webflow</span><span class="mq-item">Framer</span><span class="mq-item">3D Rendering</span><span class="mq-item">Packaging</span><span class="mq-item">Art Direction</span><span class="mq-item">Copywriting</span><span class="mq-item">Rebranding</span>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="processo">
+  <span class="section-label">— Il nostro metodo</span>
+  <h2>Un processo <em class="gold-grad">collaudato</em></h2>
+  <p class="process-sub">Quattro fasi per trasformare un'idea in un brand che dura.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot">I</div>
+      <h4>Discovery</h4>
+      <p>Analisi approfondita del business, del mercato e dei competitor. Definiamo obiettivi e opportunità.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot">II</div>
+      <h4>Strategia</h4>
+      <p>Posizionamento, tono di voce e architettura visiva. La mappa prima del viaggio.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot">III</div>
+      <h4>Design</h4>
+      <p>Concept, iterazioni e raffinamento fino alla perfezione. Ogni pixel è una decisione consapevole.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot">IV</div>
+      <h4>Lancio</h4>
+      <p>Consegna, implementazione e supporto post-lancio. Il progetto vive, evolve, cresce.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" id="clienti">
+  <span class="clients-label">— Hanno scelto Aurum</span>
+  <div class="clients-row">
+    <span class="client-name">Luxora</span>
+    <span class="client-name">Meridian</span>
+    <span class="client-name">Veltis</span>
+    <span class="client-name">Nordhavn</span>
+    <span class="client-name">Stellae</span>
+    <span class="client-name">Orakel</span>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="divider"></div>
+  <blockquote>"Aurum ha trasformato il nostro brand in qualcosa che non avremmo mai immaginato. Il risultato ha superato ogni aspettativa — e i nostri clienti lo notano ogni giorno."</blockquote>
+  <span class="quote-author">— Marco Ferretti, CEO di Meridian Group</span>
+  <div class="divider"></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contatti">
+  <div class="cta-box">
+    <h2>Pronti a elevare il vostro brand?</h2>
+    <p>Lavoriamo con un numero selezionato di clienti ogni anno.<br>Contattateci per verificare la disponibilità e discutere il vostro progetto.</p>
+    <div class="input-row">
+      <input class="email-in" type="email" placeholder="La vostra email" />
+      <button class="btn-gold" style="white-space:nowrap;padding:15px 28px;font-size:11px;letter-spacing:2px;">Scrivici →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-copy">© 2026 Aurum Studio — Milano, Italia</span>
+  <div class="foot-links">
+    <a href="#">Privacy</a>
+    <a href="#">Cookie</a>
+    <a href="#">Instagram</a>
+    <a href="#">Behance</a>
+  </div>
+</footer>
+
+</body>
+</html>
