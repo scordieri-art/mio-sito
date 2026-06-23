@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aurum Studio — Creative Agency Milano</title>
+<meta name="description" content="Studio creativo premium specializzato in brand identity, web design e motion graphics."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#c9a84c;
+  --gold-light:#f0d060;
+  --gold-dark:#7a5c10;
+  --bg:#05050d;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --ease2:cubic-bezier(0.23,1,0.32,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:'Inter',sans-serif;color:#fff;overflow-x:hidden;cursor:none}
+
+/* ── CURSOR ── */
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .3s;will-change:transform}
+#cur-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,168,76,0.6);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .5s var(--ease),height .5s var(--ease),opacity .5s,border-color .4s;will-change:transform}
+body:hover #cur{opacity:1}
+.cur-hover #cur{width:48px;height:48px;opacity:.25}
+.cur-hover #cur-ring{width:80px;height:80px;border-color:rgba(201,168,76,0.2)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:28px 60px;transition:all .6s var(--ease)}
+nav.compact{background:rgba(5,5,13,0.88);backdrop-filter:blur(24px);padding:16px 60px;border-bottom:1px solid rgba(201,168,76,0.07)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:300;letter-spacing:8px;text-transform:uppercase;color:#fff;text-decoration:none}
+.logo em{font-style:normal;color:var(--gold)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.38);text-decoration:none;font-size:10px;letter-spacing:3px;text-transform:uppercase;transition:color .4s;position:relative;padding-bottom:4px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .5s var(--ease2)}
+.nav-links a:hover{color:rgba(255,255,255,0.9)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid rgba(201,168,76,0.3);padding:12px 28px;cursor:none;position:relative;overflow:hidden;transition:border-color .4s,color .4s}
+.nav-cta::before{content:'';position:absolute;inset:0;background:rgba(201,168,76,0.07);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease2)}
+.nav-cta:hover{border-color:rgba(201,168,76,0.55);color:#fff}
+.nav-cta:hover::before{transform:scaleX(1)}
+
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#c{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-noise{position:absolute;inset:0;z-index:2;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+.hero-inner{position:relative;z-index:10;text-align:center;padding:0 32px;max-width:880px;pointer-events:none}
+.hero-tag{display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(201,168,76,0.6);padding:8px 20px;border:1px solid rgba(201,168,76,0.15);margin-bottom:40px;opacity:0;animation:rise .9s .4s var(--ease) forwards}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7.5vw,96px);font-weight:300;line-height:1.05;letter-spacing:-2px;margin-bottom:36px}
+.h1-a,.h1-b{display:block;overflow:hidden}
+.h1-a span,.h1-b span{display:block;opacity:0;transform:translateY(100%);animation:clipUp 1.1s var(--ease) forwards}
+.h1-a span{animation-delay:.55s}
+.h1-b span{animation-delay:.72s;font-style:italic;background:linear-gradient(120deg,var(--gold-light) 0%,var(--gold) 50%,var(--gold-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5),transparent);margin:0 auto 36px;animation:lineGrow 1.2s 1s var(--ease) forwards}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.38);max-width:420px;margin:0 auto 52px;line-height:1.9;font-weight:300;letter-spacing:.2px;opacity:0;animation:rise .9s 1.1s var(--ease) forwards}
+.hero-btns{display:flex;gap:16px;justify-content:center;pointer-events:all;opacity:0;animation:rise .9s 1.3s var(--ease) forwards}
+.btn-g{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));color:#05050d;border:none;padding:17px 42px;cursor:none;font-weight:500;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s}
+.btn-g::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.25);opacity:0;transition:opacity .4s}
+.btn-g:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(201,168,76,0.28)}
+.btn-g:hover::after{opacity:1}
+.btn-o{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.6);padding:17px 42px;cursor:none;transition:all .4s var(--ease)}
+.btn-o:hover{border-color:rgba(201,168,76,0.4);color:rgba(255,255,255,0.9);transform:translateY(-4px)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:10;opacity:0;animation:rise .9s 2s var(--ease) forwards}
+.scroll-hint span{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+.scroll-bar{width:1px;height:52px;background:linear-gradient(to bottom,rgba(201,168,76,0.8),transparent);animation:pulse 2.4s ease-in-out infinite}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(201,168,76,0.08);border-bottom:1px solid rgba(201,168,76,0.08)}
+.st{text-align:center;padding:48px 16px;border-right:1px solid rgba(201,168,76,0.08);opacity:0;transform:translateY(24px);transition:all .9s var(--ease)}
+.st:last-child{border-right:none}
+.st.on{opacity:1;transform:translateY(0)}
+.st-n{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.st-l{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+
+/* ── SERVICES ── */
+.services{padding:110px 60px}
+.sec-label{display:block;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(201,168,76,0.5);text-align:center;margin-bottom:56px;opacity:0;transform:translateY(16px);transition:all .8s var(--ease)}
+.sec-label.on{opacity:1;transform:translateY(0)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.07)}
+.svc{background:var(--bg);padding:50px 40px;transition:background .5s var(--ease),transform .5s var(--ease);opacity:0;transform:translateY(32px) scale(.985);cursor:none}
+.svc.on{opacity:1;transform:translateY(0) scale(1)}
+.svc:hover{background:rgba(201,168,76,0.03);transform:translateY(-8px) scale(1.01);box-shadow:0 32px 80px rgba(0,0,0,.5)}
+.svc-n{font-family:'Cormorant Garamond',serif;font-size:12px;color:rgba(201,168,76,0.3);margin-bottom:28px;letter-spacing:2px}
+.svc h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;margin-bottom:18px;transition:color .4s}
+.svc:hover h3{color:rgba(201,168,76,0.85)}
+.svc p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.88;font-weight:300}
+.svc-arrow{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(201,168,76,0.4);padding-bottom:3px;border-bottom:1px solid rgba(201,168,76,0.2);transition:gap .4s var(--ease),color .4s}
+.svc:hover .svc-arrow{gap:14px;color:var(--gold)}
+
+/* ── MARQUEE ── */
+.mq-wrap{overflow:hidden;padding:28px 0;border-top:1px solid rgba(201,168,76,0.06);border-bottom:1px solid rgba(201,168,76,0.06)}
+.mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
+.mq-track.rev{animation-direction:reverse}
+.mq-wrap:hover .mq-track{animation-play-state:paused}
+.mq-item{padding:0 52px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(201,168,76,0.3);border-right:1px solid rgba(201,168,76,0.09);white-space:nowrap;transition:color .3s}
+.mq-item:hover{color:rgba(201,168,76,0.7)}
+
+/* ── PROCESS ── */
+.process{padding:110px 60px;text-align:center}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4vw,56px);font-weight:300;margin-bottom:14px;opacity:0;transform:translateY(24px);transition:all .9s var(--ease)}
+.sec-h.on{opacity:1;transform:translateY(0)}
+.sec-sub{font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:80px;letter-spacing:.2px;opacity:0;transition:all .9s .15s var(--ease)}
+.sec-sub.on{opacity:1}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.steps::before{content:'';position:absolute;top:19px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.18) 15%,rgba(201,168,76,0.18) 85%,transparent)}
+.step{padding:0 28px;opacity:0;transform:translateY(24px)}
+.step.on{opacity:1;transform:translateY(0)}
+.step-dot{width:38px;height:38px;border:1px solid rgba(201,168,76,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 30px;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);background:var(--bg);position:relative;z-index:1;transition:box-shadow .5s,border-color .5s}
+.step.on .step-dot{border-color:rgba(201,168,76,0.5);box-shadow:0 0 24px rgba(201,168,76,0.1)}
+.step h4{font-size:12px;font-weight:500;letter-spacing:.5px;color:#fff;margin-bottom:12px}
+.step p{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8}
+
+/* ── CLIENTS ── */
+.clients{padding:80px 60px;text-align:center}
+.cl-row{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;align-items:center}
+.cl{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.12);transition:color .5s var(--ease),transform .5s var(--ease),letter-spacing .5s var(--ease);cursor:none}
+.cl:hover{color:rgba(201,168,76,0.55);transform:scale(1.06);letter-spacing:4px}
+
+/* ── TESTIMONIAL ── */
+.testi{padding:80px 60px;text-align:center}
+.divider{width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent);margin:40px auto}
+blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.4vw,30px);font-weight:300;font-style:italic;color:rgba(255,255,255,0.65);line-height:1.65;max-width:660px;margin:0 auto 28px}
+.qa{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(201,168,76,0.5)}
+
+/* ── CTA ── */
+.cta-s{padding:80px 60px}
+.cta-box{border:1px solid rgba(201,168,76,0.1);padding:76px 72px;text-align:center;max-width:740px;margin:0 auto;position:relative;overflow:hidden;opacity:0;transform:translateY(32px);transition:all 1s var(--ease)}
+.cta-box.on{opacity:1;transform:translateY(0)}
+.cta-box::before{content:'';position:absolute;top:-40%;left:-10%;width:120%;height:200%;background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.04) 0%,transparent 60%);pointer-events:none}
+.cta-box h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.5vw,46px);font-weight:300;margin-bottom:14px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.35);margin-bottom:48px;line-height:1.9}
+.in-row{display:flex;max-width:500px;margin:0 auto}
+.em-in{flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.14);border-right:none;color:#fff;padding:17px 22px;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .3s}
+.em-in:focus{border-color:rgba(201,168,76,0.35)}
+.em-in::placeholder{color:rgba(255,255,255,0.18)}
+
+/* ── FOOTER ── */
+footer{padding:32px 60px;border-top:1px solid rgba(201,168,76,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.fc{font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px}
+.fl{display:flex;gap:28px}
+.fl a{font-size:10px;color:rgba(255,255,255,0.15);text-decoration:none;letter-spacing:1px;transition:color .3s}
+.fl a:hover{color:var(--gold)}
+
+/* ── GOLD GRAD UTIL ── */
+.gg{background:linear-gradient(120deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── KEYFRAMES ── */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes clipUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{from{width:0}to{width:60px}}
+@keyframes pulse{0%,100%{opacity:.5;transform:scaleY(.9)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:18px 24px}
+  .nav-links,.nav-cta{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .st{border-bottom:1px solid rgba(201,168,76,0.08)}
+  .services{padding:60px 24px}
+  .svc-grid{grid-template-columns:1fr}
+  .process{padding:60px 24px}
+  .steps{grid-template-columns:1fr 1fr;gap:40px}
+  .steps::before{display:none}
+  .clients{padding:60px 24px}
+  .cl-row{gap:32px}
+  .cta-s{padding:60px 24px}
+  .cta-box{padding:40px 24px}
+  .in-row{flex-direction:column}
+  .em-in{border-right:1px solid rgba(201,168,76,0.14);border-bottom:none}
+  footer{flex-direction:column;text-align:center;padding:24px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">Aurum<em>.</em></a>
+  <ul class="nav-links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#processo">Metodo</a></li>
+    <li><a href="#clienti">Clienti</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contatti').scrollIntoView({behavior:'smooth'})">Inizia un progetto</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="c"></canvas>
+  <div class="hero-noise"></div>
+  <div class="hero-inner" id="hi">
+    <span class="hero-tag">Studio Creativo — Milano · 2026</span>
+    <h1>
+      <span class="h1-a"><span>Design che eleva</span></span>
+      <span class="h1-b"><span>il tuo brand</span></span>
+    </h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Creiamo identità visive, esperienze digitali e campagne che posizionano i brand ambiziosi al vertice del loro settore.</p>
+    <div class="hero-btns">
+      <button class="btn-g" onclick="document.getElementById('servizi').scrollIntoView({behavior:'smooth'})">Scopri i lavori</button>
+      <button class="btn-o" onclick="document.getElementById('processo').scrollIntoView({behavior:'smooth'})">Il nostro metodo →</button>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="st"><div class="st-n">140+</div><div class="st-l">Progetti realizzati</div></div>
+  <div class="st"><div class="st-n">12</div><div class="st-l">Anni di esperienza</div></div>
+  <div class="st"><div class="st-n">38</div><div class="st-l">Premi internazionali</div></div>
+  <div class="st"><div class="st-n">98%</div><div class="st-l">Clienti fedeli</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servizi">
+  <span class="sec-label">— Cosa facciamo</span>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-n">01</div><h3>Brand Identity</h3><p>Loghi, sistemi tipografici, palette cromatiche e linee guida complete. Costruiamo marchi riconoscibili che resistono al tempo e comunicano autorevolezza al primo sguardo.</p><span class="svc-arrow">Esplora →</span></div>
+    <div class="svc"><div class="svc-n">02</div><h3>Web Design & Dev</h3><p>Siti web animati, veloci e responsivi progettati per convertire. Dal concept al codice, con cura maniacale per ogni dettaglio dell'esperienza utente su ogni dispositivo.</p><span class="svc-arrow">Esplora →</span></div>
+    <div class="svc"><div class="svc-n">03</div><h3>Motion & 3D</h3><p>Animazioni, reel di brand, intro video e grafica tridimensionale che danno vita ai tuoi contenuti su ogni piattaforma — dal social al grande schermo.</p><span class="svc-arrow">Esplora →</span></div>
+    <div class="svc"><div class="svc-n">04</div><h3>Strategia creativa</h3><p>Analisi del mercato, posizionamento competitivo e architettura del messaggio. Prima di disegnare, pensiamo. La strategia è la fondamenta di ogni progetto di successo.</p><span class="svc-arrow">Esplora →</span></div>
+    <div class="svc"><div class="svc-n">05</div><h3>Packaging & Print</h3><p>Design editoriale, packaging di prodotto e materiali stampa che si distinguono sullo scaffale. L'esperienza fisica del tuo brand, con la stessa cura del digitale.</p><span class="svc-arrow">Esplora →</span></div>
+    <div class="svc"><div class="svc-n">06</div><h3>Campagne social</h3><p>Visual identity per i social, template, reel e strategie di contenuto che costruiscono community attive e amplificano la voce del tuo brand nel rumore digitale.</p><span class="svc-arrow">Esplora →</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <span class="mq-item">Brand Identity</span><span class="mq-item">UI/UX Design</span><span class="mq-item">Motion Graphics</span><span class="mq-item">Webflow</span><span class="mq-item">Framer</span><span class="mq-item">3D Rendering</span><span class="mq-item">Packaging</span><span class="mq-item">Art Direction</span><span class="mq-item">Copywriting</span><span class="mq-item">Rebranding</span>
+    <span class="mq-item">Brand Identity</span><span class="mq-item">UI/UX Design</span><span class="mq-item">Motion Graphics</span><span class="mq-item">Webflow</span><span class="mq-item">Framer</span><span class="mq-item">3D Rendering</span><span class="mq-item">Packaging</span><span class="mq-item">Art Direction</span><span class="mq-item">Copywriting</span><span class="mq-item">Rebranding</span>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="processo">
+  <span class="sec-label">— Il nostro metodo</span>
+  <h2 class="sec-h">Un processo <em class="gg">collaudato</em></h2>
+  <p class="sec-sub">Quattro fasi per trasformare un'idea in un brand che dura.</p>
+  <div class="steps">
+    <div class="step"><div class="step-dot">I</div><h4>Discovery</h4><p>Analisi del business, del mercato e dei competitor. Definiamo obiettivi e opportunità reali.</p></div>
+    <div class="step"><div class="step-dot">II</div><h4>Strategia</h4><p>Posizionamento, tono di voce e architettura visiva. La mappa prima del viaggio.</p></div>
+    <div class="step"><div class="step-dot">III</div><h4>Design</h4><p>Concept, iterazioni e raffinamento. Ogni pixel è una scelta consapevole.</p></div>
+    <div class="step"><div class="step-dot">IV</div><h4>Lancio</h4><p>Consegna, implementazione e supporto post-lancio. Il progetto vive e cresce.</p></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" id="clienti">
+  <span class="sec-label">— Hanno scelto Aurum</span>
+  <div class="cl-row">
+    <span class="cl">Luxora</span>
+    <span class="cl">Meridian</span>
+    <span class="cl">Veltis</span>
+    <span class="cl">Nordhavn</span>
+    <span class="cl">Stellae</span>
+    <span class="cl">Orakel</span>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi">
+  <div class="divider"></div>
+  <blockquote>"Aurum ha trasformato il nostro brand in qualcosa che non avremmo mai immaginato. Il risultato ha superato ogni aspettativa — e i nostri clienti lo notano ogni giorno."</blockquote>
+  <span class="qa">— Marco Ferretti, CEO di Meridian Group</span>
+  <div class="divider"></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-s" id="contatti">
+  <div class="cta-box">
+    <h2>Pronti a elevare il vostro brand?</h2>
+    <p>Lavoriamo con un numero selezionato di clienti ogni anno.<br>Contattateci per verificare la disponibilità e discutere il vostro progetto.</p>
+    <div class="in-row">
+      <input class="em-in" type="email" placeholder="La vostra email"/>
+      <button class="btn-g" style="white-space:nowrap;padding:17px 30px;font-size:10px;">Scrivici →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="fc">© 2026 Aurum Studio — Milano, Italia</span>
+  <div class="fl">
+    <a href="#">Privacy</a><a href="#">Cookie</a><a href="#">Instagram</a><a href="#">Behance</a>
+  </div>
+</footer>
+
+<script>
+/* ─── CURSOR ─────────────────────────────── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+(function lp(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(lp);
+})();
+document.querySelectorAll('a,button,.svc,.cl,.mq-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cur-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-hover'));
+});
+
+/* ─── NAV ────────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('compact',scrollY>60);
+});
+
+/* ─── CANVAS — FLUID GOLD LINES ─────────── */
+const cv=document.getElementById('c'),cx=cv.getContext('2d');
+let W,H;
+function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight}
+resize();window.addEventListener('resize',resize);
+
+let mxR=W/2,myR=H/2;
+document.addEventListener('mousemove',e=>{mxR=e.clientX;myR=e.clientY});
+
+// Flowing bezier lines
+class Line{
+  constructor(i,total){
+    this.i=i;this.total=total;
+    this.phase=Math.random()*Math.PI*2;
+    this.speed=0.004+Math.random()*0.006;
+    this.amp=60+Math.random()*80;
+    this.yBase=(i/(total-1))*H*0.9+H*0.05;
+    this.alpha=0.06+Math.random()*0.1;
+    this.hue=38+Math.random()*20;
+  }
+  draw(t){
+    cx.beginPath();
+    const mx2=mxR/W-.5,my2=myR/H-.5;
+    const warp=Math.sin(t*this.speed+this.phase);
+    cx.moveTo(0,this.yBase+warp*this.amp*0.3+my2*40);
+    const cp1x=W*.25,cp1y=this.yBase+Math.sin(t*this.speed*1.3+this.phase)*this.amp+mx2*30;
+    const cp2x=W*.65,cp2y=this.yBase+Math.cos(t*this.speed*0.9+this.phase+1)*this.amp-my2*30;
+    const ex=W,ey=this.yBase+Math.sin(t*this.speed*1.1+this.phase+2)*this.amp*0.5;
+    cx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,ex,ey);
+    const grad=cx.createLinearGradient(0,0,W,0);
+    grad.addColorStop(0,'rgba(0,0,0,0)');
+    grad.addColorStop(.2,`hsla(${this.hue},65%,55%,${this.alpha})`);
+    grad.addColorStop(.5,`hsla(${this.hue},80%,65%,${this.alpha*1.4})`);
+    grad.addColorStop(.8,`hsla(${this.hue},65%,45%,${this.alpha})`);
+    grad.addColorStop(1,'rgba(0,0,0,0)');
+    cx.strokeStyle=grad;
+    cx.lineWidth=1+Math.random()*0.5;
+    cx.stroke();
+  }
+}
+
+// Floating particles
+class Pt{
+  constructor(){this.reset()}
+  reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.r=Math.random()*1.2+.2;this.a=Math.random()*.4+.05}
+  tick(){
+    this.x+=this.vx+(mxR/W-.5)*.06;this.y+=this.vy+(myR/H-.5)*.06;
+    if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
+  }
+  draw(){cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fillStyle=`rgba(201,168,76,${this.a})`;cx.fill()}
+}
+
+const LINES=14,lines=[];for(let i=0;i<LINES;i++)lines.push(new Line(i,LINES));
+const PTS=80,pts=[];for(let i=0;i<PTS;i++)pts.push(new Pt());
+
+// Central glow
+function drawGlow(t){
+  const ox=W*.5+(mxR/W-.5)*60,oy=H*.45+(myR/H-.5)*40;
+  const g=cx.createRadialGradient(ox,oy,0,ox,oy,W*.55);
+  g.addColorStop(0,'rgba(201,168,76,0.07)');
+  g.addColorStop(.4,'rgba(130,100,30,0.03)');
+  g.addColorStop(1,'rgba(0,0,0,0)');
+  cx.fillStyle=g;cx.fillRect(0,0,W,H);
+
+  // Rotating ring
+  const r=Math.min(W,H)*.18,pulse=Math.sin(t*.0008)*8;
+  cx.beginPath();cx.arc(ox,oy,r+pulse,0,Math.PI*2);
+  cx.strokeStyle='rgba(201,168,76,0.04)';cx.lineWidth=1;cx.stroke();
+  cx.beginPath();cx.arc(ox,oy,r*.6+pulse*.5,0,Math.PI*2);
+  cx.strokeStyle='rgba(201,168,76,0.06)';cx.lineWidth=.5;cx.stroke();
+}
+
+let t=0;
+(function frame(){
+  t++;
+  cx.clearRect(0,0,W,H);
+  drawGlow(t);
+  lines.forEach(l=>l.draw(t));
+  pts.forEach(p=>{p.tick();p.draw()});
+
+  // Connection web (sparse)
+  for(let i=0;i<pts.length;i++){
+    for(let j=i+1;j<pts.length;j++){
+      const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+      if(d<90){cx.beginPath();cx.strokeStyle=`rgba(201,168,76,${.04*(1-d/90)})`;cx.lineWidth=.4;cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.stroke()}
+    }
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ─── HERO PARALLAX ──────────────────────── */
+const hi=document.getElementById('hi');
+document.addEventListener('mousemove',e=>{
+  const dx=(e.clientX/W-.5)*12,dy=(e.clientY/H-.5)*8;
+  hi.style.transform=`translate(${dx}px,${dy}px)`;
+});
+
+/* ─── SCROLL REVEAL (IntersectionObserver) ─ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,idx)=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      // stagger children if svc or step
+      if(el.classList.contains('svc-grid')||el.classList.contains('steps')){
+        el.querySelectorAll('.svc,.step').forEach((c,i)=>{
+          setTimeout(()=>c.classList.add('on'),i*90);
+        });
+      } else {
+        el.classList.add('on');
+      }
+      io.unobserve(el);
+    }
+  });
+},{threshold:0.12});
+
+// observe containers
+document.querySelectorAll('.st,.sec-label,.sec-h,.sec-sub,.svc-grid,.steps,.cta-box').forEach(el=>io.observe(el));
+
+/* ─── COUNTER ANIMATION ───────────────────── */
+const io2=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const nums=e.target.querySelectorAll('.st-n');
+      nums.forEach(n=>{
+        const raw=n.textContent;
+        const num=parseFloat(raw);
+        const suffix=raw.replace(/[\d.]/g,'');
+        let s=0,dur=1600,start=null;
+        const step=ts=>{
+          if(!start)start=ts;
+          const p=Math.min((ts-start)/dur,1);
+          const ease=1-Math.pow(1-p,3);
+          n.textContent=Math.round(num*ease)+suffix;
+          if(p<1)requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+      io2.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+io2.observe(document.querySelector('.stats'));
+</script>
+</body>
+</html>
